@@ -31,23 +31,27 @@ namespace SimulazioneVefirifaTappi.Domain
             Parties.Add(new Party(name, cost, date, tags));
         }
 
-        public Party PriciestEvent()
+        public Party[] PriciestEvents()
         {
             double maxcost = 0.0;
-            Party party = Parties[0];
             
-            for(int i = 0; i<Parties.Count; i++)
+            foreach(Party p in Parties)
             {
-                if (Parties[i].Cost > maxcost)
-                    party = Parties[i];
+                if (p.Cost > maxcost) maxcost = p.Cost;
             }
 
-            return party;
+            List<Party> expensiveparty = new List<Party>();
+            foreach(Party p in Parties)
+            {
+                if (p.Cost == maxcost) expensiveparty.Add(p);
+            }
+            return expensiveparty.ToArray();
         }
 
-        public Tags MostFoundTag()
+        public Tags[] MostFoundTag()
         {
-            List<int> counts = new List<int>();            
+            List<int> counts = new List<int>();
+            List<Tags> mostFoundTags = new List<Tags>();
             int count = 0;            
             int i = 0;          
 
@@ -67,8 +71,23 @@ namespace SimulazioneVefirifaTappi.Domain
                 counts.Add(count);
                 i++;
             }
-            int r = counts.IndexOf(counts.Max());
-            return (Tags)r;
+
+            int maxcount = 0;
+            i = 0;
+            foreach(int c in counts)
+            {
+                if (c > maxcount) maxcount = c;
+            }
+
+            while( i <= (int) Tags.Seventies)
+            {
+                if (counts[i] == maxcount)
+                    mostFoundTags.Add((Tags)i);
+
+                i++;
+            }
+
+            return mostFoundTags.ToArray();
         }
     }
 }
