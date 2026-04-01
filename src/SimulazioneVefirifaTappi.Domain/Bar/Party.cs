@@ -1,4 +1,4 @@
-﻿namespace SimulazioneVefirifaTappi.Domain
+﻿namespace SimulazioneVefirifaTappi.Domain.Bar
 {
     public class Party
     {

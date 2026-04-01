@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimulazioneVefirifaTappi.Domain
+namespace SimulazioneVefirifaTappi.Domain.Bar
 {
     public enum Tags
     {
